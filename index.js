@@ -19,7 +19,12 @@ const classUnitCode = "518"; // local ikea
   setInterval(async () => {
     for (const item of items) {
       const stock = await getStockOfItem(item.id);
-      console.log(`Stock for item ${item.name}: ${stock}`);
+      console.log(
+        `Stock for item ${item.name}: ${stock} | ${new Date()
+          .toISOString()
+          .slice(0, 23)
+          .replace("T", " ")}`
+      );
       if (item.stock !== null && stock > item.stock) {
         sendMessage(
           `Le stock du ${item.name} est de ${stock - item.stock} unites`
